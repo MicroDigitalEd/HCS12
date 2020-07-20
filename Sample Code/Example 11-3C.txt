@@ -1,0 +1,21 @@
+﻿void main(void) 
+{
+  
+  DDRT = DDRT & ~DDRT_DDRT7_MASK;  
+  DDRA = DDRA | DDRA_BIT4_MASK; 
+  DDRB = DDRB | DDRB_BIT4_MASK; 
+  TSCR1 = 0x80;   
+  TSCR2 = 0x00;   
+  TIOS = TIOS | TIOS_IOS7_MASK; 
+  TCTL3 = 0x40;   
+  TIE = 0x80; 
+  __asm CLI;  
+  for(;;) 
+  {
+  } 
+}
+interrupt (((0x10000-Vtimch7)/2)-1) void TC7_ISR(void)
+{
+  PORTB = PORTB ^ PORTB_BIT4_MASK; 
+  TFLG1 = TFLG1 | TFLG1_C7F_MASK; 
+}

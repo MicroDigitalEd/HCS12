@@ -1,0 +1,24 @@
+﻿Entry:LDS   #RAMEnd+1       	
+	LDAA  #$FF
+	STAA  DDRB
+	STAA  DDRA		
+	LDAA 	#$80		
+	STAA	TSCR1			
+	LDAA 	#$00		
+	STAA	TSCR2			
+	BSET	TIOS,%10000000	
+	LDAA 	#$40			
+	STAA	TCTL3			
+	CLI				
+	LDAA 	#$80			
+	STAA	TIE			
+OVER	BRA	OVER			
+TC7_ISR LDD	TCNT			
+	STAB	PORTB			
+	STAA  PORTA			
+	BSET	TFLG1,%10000000	
+	RTI				
+	ORG   $FFE0
+	DC.W  TC7_ISR
+	ORG   $FFFE
+	DC.W  Entry           

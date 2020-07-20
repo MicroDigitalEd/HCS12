@@ -1,0 +1,17 @@
+﻿unsigned char Counter;
+void main(void) 
+{
+  
+  DDRA = 0xFF;  
+  DDRB = 0xFF;  
+  DDRT = DDRT & ~DDRT_DDRT7_MASK; 
+  PACTL = 0b01010001; 
+  PACN32 = 0x0000;  
+  __asm CLI;
+  for(;;) {} 
+}
+interrupt (((0x10000-Vtimpaie)/2)-1) void PACA_EDGE(void)
+{
+  PORTAB = PACN32; 
+  PAFLG = PAFLG | PAFLG_PAIF_MASK; 
+}

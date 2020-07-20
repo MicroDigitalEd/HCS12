@@ -1,0 +1,12 @@
+﻿void main(void) 
+{
+  
+  __asm ANDCC #$BF; 
+  DDRB = DDRB | DDRB_BIT4_MASK; 
+  PORTB = PORTB & ~PORTB_BIT4_MASK; 
+  for(;;) {} 
+}
+interrupt (((0x10000-Vxirq)/2)-1) void IRQ_EDGE(void)
+{
+  PORTB = PORTB ^ PORTB_BIT4_MASK; 
+}

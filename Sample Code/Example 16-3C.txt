@@ -1,0 +1,12 @@
+﻿	unsigned char 	x; 
+	SPI0BR = 0x20;	
+     	SPI0CR1 = 0x54;	
+				
+     	SPI0CR2 = 0x0;	
+	WOMS = 0x0;		
+	while(1) {
+	  while (!(SPI0SR & SPI0SR_SPTEF_MASK)); 
+	  SPI0DR = 'G';	
+	  while (!(SPI0SR & SPI0SR_SPIF_MASK))   
+	  x=SPI0DR;		
+	  }

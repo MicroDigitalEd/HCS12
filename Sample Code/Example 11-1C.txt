@@ -1,0 +1,25 @@
+﻿#include <mc9s12dp512.h>     
+unsigned char COUNT;
+void main(void) 
+{
+  
+  DDRB = 0xFF; 
+  DDRA = 0xFF; 
+  DDRH = 0x00; 
+  COUNT = 0;   
+  TSCR1 = 0x80;
+  TSCR2 = 0x86;
+  TFLG2 = TFLG2 | TFLG2_TOF_MASK; 
+  __asm CLI; 
+  for(;;) 
+  {
+    PORTA = PTH;
+  } 
+  
+}
+interrupt (((0x10000-Vtimovf)/2)-1) void TOF_ISR(void) 
+{
+  COUNT++; 
+  PORTB = COUNT; 
+  TFLG2 = TFLG2 | TFLG2_TOF_MASK; 
+}

@@ -1,0 +1,15 @@
+﻿#include <mc9s12dp512.h>     
+void main()
+  {
+ 	PWMPRCLK=0x04; 	
+	PWMSCLA=125; 	
+	PWMCLK=0x20; 	
+	PWMPOL=0x20; 		
+	PWMCAE=0x0; 		
+	PWMCTL=0x0;	
+	PWMPER5=10; 	
+	PWMDTY5=5; 	
+	PWMCNT5=0;		
+	PWME=0x20; 	
+  	while(1);
+  }

@@ -1,0 +1,21 @@
+﻿Main:	LDS   #RAMEnd+1        
+	LDAA 	#$80		
+	STAA	TSCR1			
+	LDAA 	#$04		
+	STAA	TSCR2			
+	BSET	TIOS,%10000000	
+	LDAA 	#$40			
+	STAA	TCTL1			
+	CLI		
+	LDAA 	#$80			
+	STAA	TIE		
+OVER	BRA	OVER		
+TC7_ISR LDD	TCNT		
+	ADDD	#62500		
+	STD	TC7			
+	BSET	TFLG1,%10000000	
+	RTI				
+	ORG $FFE0
+	DC.W TC7_ISR		
+	ORG   $FFFE
+	DC.W  Main           	

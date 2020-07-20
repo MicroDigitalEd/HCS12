@@ -1,0 +1,21 @@
+﻿unsigned int COUNT;
+void main(void) 
+{
+  
+  CRGINT = CRGINT | CRGINT_RTIE_MASK; 	
+  RTICTL = 0b01111111;		
+  COUNT = 0;				
+  DDRB = DDRB | DDRB_BIT4_MASK; 		
+  __asm CLI;  				
+  for(;;) {} 
+}
+interrupt (((0x10000-Vrti)/2)-1) void RTI_ISR(void)
+{
+  COUNT++;					
+  if(COUNT==8) 			
+  {
+    PORTB = PORTB ^ PORTB_BIT4_MASK; 	
+    COUNT = 0;      			
+  }
+  CRGFLG = CRGFLG | CRGFLG_RTIF_MASK; 	
+}

@@ -1,0 +1,20 @@
+﻿	R2			DS.B	1			
+				MOVB	#$FF,DDRB		
+				CLC
+				LDAA #$66			
+	BACK		STAA PORTB			
+				LSRA				
+			  	BCC OVER
+			  	ORAA #$80
+	OVER	  	JSR  DELAY			
+				BRA	BACK			
+	DELAY		MOVB R2,$FF	
+	D1			NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				DEC R2
+				BNEQ D1
+				RTS

@@ -1,0 +1,18 @@
+﻿TEMP	DC.B	1
+Entry:LDS	#RAMEnd+1     	
+	BSET	INTCR,%11000000	
+	CLR	TEMP
+	CLI				
+	BSET	DDRB,%00010000	
+	BCLR	PORTB,%00010000	
+HERE	BRA	HERE			
+IRQ_EDGE
+	LDAA	TEMP          	
+	EORA	#%00010000		
+	STAA	TEMP			
+	STAA	PORTB         	
+	RTI				
+    	ORG	$FFF2
+    	DC.W	IRQ_EDGE		
+    	ORG  	$FFFE
+    	DC.W	Entry

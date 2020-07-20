@@ -1,0 +1,22 @@
+﻿Entry:LDS   #RAMEnd+1        
+	LDAA 	#$FF		
+	STAA	DDRA			
+	STAA	DDRB			
+	BCLR	DDRT,%10000000	
+	LDAA 	#%01010001		
+	STAA	PACTL			
+	LDAA	#0			
+	LDAB	#0			
+	STD	PACN32		
+	CLI
+	BRA $
+PACA_EDGE
+	LDD	PACN32	
+	STAB	PORTA			
+	STAA	PORTB			
+	BSET	PAFLG,mPAFLG_PAIF
+	RTI
+	ORG 	$FFDA
+	DC.W	PACA_EDGE		
+	ORG	$FFFE
+	DC.W  Entry           	

@@ -1,0 +1,18 @@
+﻿	MOVB	#$FF,DDRB		
+	MOVB	#$7F,DDRA		
+	CLC
+ 	LDAA	#$66  		
+	STAA	PORTB   		
+TURN 	BRCLR	PORTA,$80,CW 	
+  	LSRA        		
+  	BCC	OVER
+  	ORAA	#$80
+OVER	JSR	DELAY   		
+  	STAA	PORTB      	
+ 	BRA	TURN     		
+CW	LSLA          		
+  	BCC 	OV1
+  	ORAA #$01
+OV1 	JSR	DELAY  		
+  	STAA 	PORTB    		
+  	BRA	TURN    		

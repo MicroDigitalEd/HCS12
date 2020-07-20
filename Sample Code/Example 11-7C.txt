@@ -1,0 +1,13 @@
+﻿	
+void main(void) {
+  
+  INTCR = INTCR | INTCR_IRQEN_MASK; 
+  DDRB = DDRB | DDRB_BIT4_MASK; 
+  PORTB = PORTB & ~PORTB_BIT4_MASK; 
+  __asm CLI;  
+  for(;;) {} 
+}
+interrupt (((0x10000-Virq)/2)-1) void IRQ_ISR(void)
+  {
+  PORTB = PORTB ^ PORTB_BIT4_MASK; 
+  }

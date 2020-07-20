@@ -1,0 +1,8 @@
+﻿	unsigned char	x;
+	............... 		
+	while(1) {
+		while (!(SPI0SR & SPI0SR_SPTEF_MASK)); 
+		SPI0DR = 0;		
+		while (!(SPI0SR & SPI0SR_SPIF_MASK))
+		x=SPI0DR;		
+	  }

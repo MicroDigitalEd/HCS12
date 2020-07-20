@@ -1,0 +1,19 @@
+﻿#include <mc9s12dp512.h>     
+#define MTR  PORTB_BIT0
+void MSDelay(unsigned int value);
+void main()
+  {
+  unsigned int duty;
+  DDRB = 0x01;
+  DDRA = 0xFC;
+  while(1)
+    {
+	duty = PORTA&0x03;	
+     duty++;
+     duty *= 25;
+     MTR = 0;
+     MSDelay(duty);		
+     MTR = 1;
+     MSDelay(100-duty);	
+    }
+  }

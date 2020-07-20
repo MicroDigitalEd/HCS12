@@ -1,0 +1,20 @@
+﻿#include <mc9s12dp512.h>     
+void main(void) 
+{
+  
+  TSCR1 = 0x80;   
+  TSCR2 = 0x04;   
+  TIOS = TIOS | TIOS_IOS7_MASK; 
+  TCTL1 = 0x40; 
+  TIE = 0x80; 
+  __asm CLI; 
+  for(;;) 
+  {
+  } 
+  
+}
+interrupt (((0x10000-Vtimch7)/2)-1) void TC7_ISR(void)
+{
+  TC7 = TCNT + (word)62500; 
+  TFLG1 = TFLG1 | TFLG1_C7F_MASK; 
+}

@@ -1,0 +1,27 @@
+﻿TEMP	DC.B	1
+COUNT	DC.B	1
+Entry:LDS	#RAMEnd+1    	
+	BSET	CRGINT,%10000000	
+	LDAA	#%01111111		
+	STAA 	RTICTL		
+	CLR	TEMP			
+	CLR 	COUNT     		
+	BSET	DDRB,%00010000	
+	CLI				
+HERE	BRA	HERE			
+RTI_ISR
+  	INC	COUNT			
+  	LDAA	COUNT			
+  	CMPA	#8			
+  	BNE	OVER			
+	LDAA	TEMP           	
+	EORA	#%00010000		
+	STAA	TEMP			
+	STAA	PORTB         	
+	CLR	COUNT
+OVER	BSET	CRGFLG,%10000000	
+	RTI				
+   	ORG 	$FFF0
+    	DC.W 	RTI_ISR		
+    	ORG	$FFFE
+    	DC.W	Entry         	

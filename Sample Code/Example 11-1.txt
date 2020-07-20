@@ -1,0 +1,29 @@
+﻿	ORG   RAMStart
+COUNT DC.B	1
+	ORG   ROMStart
+Main:	LDS	#RAMEnd+1 		
+	LDAA 	#$FF		
+	STAA	DDRB			
+	STAA	DDRA			
+	LDAA 	#$00		
+	STAA	DDRH			
+	STAA	COUNT			
+	LDAA 	#$80		
+	STAA	TSCR1			
+	LDAA 	#$86		
+	STAA	TSCR2			
+	LDAA	#0			
+	BSET	TFLG2,%10000000	
+	CLI				
+H1	LDAB	PTH			
+	STAB	PORTA			
+	BRA	H1			
+TOF_ISR INC COUNT			
+  	LDAA  COUNT
+	STAA	PORTB
+	BSET	TFLG2,%10000000	
+	RTI				
+	ORG	$FFDE
+	DC.W  TOF_ISR
+	ORG	$FFFE
+	DC.W  Main       

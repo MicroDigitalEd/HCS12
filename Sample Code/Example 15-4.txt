@@ -1,0 +1,41 @@
+﻿#include <hcs12.h>
+void MSDelay(unsigned int ms);
+void main()
+  {
+    unsigned char x;
+    DDRA=0x7F;		
+    DDRB=0xFF;		
+    while(1) 
+	{
+        x = PORTA;
+        x = x & 0x80;	
+        if(x == 0)
+          {
+          PORTB = 0x66;
+          MSDelay(100);
+          PORTB = 0xCC;
+          MSDelay(100);
+          PORTB = 0x99;
+          MSDelay(100);
+          PORTB = 0x33;
+          MSDelay(100);
+          }
+        else
+          {
+          PORTB = 0x66;
+          MSDelay(100);
+          PORTB = 0x33;
+          MSDelay(100);
+          PORTB = 0x99;
+          MSDelay(100);
+          PORTB = 0xCC;
+          MSDelay(100);
+          }
+      }
+  }
+void MSDelay(unsigned int value)
+  {
+    unsigned int x, y;
+    for(x=0;x<1275;x++)
+      for(y=0;y<value;y++);
+  }

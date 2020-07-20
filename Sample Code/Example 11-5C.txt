@@ -1,0 +1,25 @@
+﻿unsigned char Counter;
+void main(void) 
+{
+  
+  DDRA = 0xFF;  
+  DDRB = DDRB | DDRB_BIT4_MASK; 
+  DDRT = DDRT & ~DDRT_DDRT7_MASK; 
+  Counter = 0;  
+  PACTL = 0b01010010; 
+  PACN32 = 0xFFF4;  
+  PORTB = PORTB & ~PORTB_BIT4_MASK; 
+  __asm CLI;
+  for(;;) 
+  {
+  } 
+}
+interrupt (((0x10000-Vtimpaaovf)/2)-1) void PACA_ISR(void)
+{
+  PORTB = PORTB | PORTB_BIT4_MASK; 
+  PAFLG = PAFLG | PAFLG_PAOVF_MASK; 
+  Counter++; 
+  PORTA = Counter; 
+  PACN32 = 0xFFF4; 
+  PORTB = PORTB & ~PORTB_BIT4_MASK; 
+}

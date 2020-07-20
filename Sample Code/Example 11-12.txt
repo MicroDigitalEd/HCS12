@@ -1,0 +1,27 @@
+﻿	
+     LDS	#RAMEnd+1  
+	LDAA 	#$FF		
+	STAA	DDRB		
+	STAA	DDRH		
+	LDAA 	#$00		
+	STAA	DDRA		
+	LDAA	#$0		
+    	STAA	SCI0BDH
+	LDAA	#$0D		
+    	STAA	SCI0BDL   	
+    	LDAA	#0	   	
+    	STAA	SCI0CR1	
+    	LDAA	#$AC	
+    	STAA	SCI0CR2	
+	CLI			
+H1	LDAA	PORTA		
+	STAA	PORTB		
+	BRA	H1		
+SCI0_ISR BRCLR	SCI0SR1,mSCI0SR1_RDRF,EXIT	
+	LDAA SCI0DRL
+	STAA PTH
+EXIT	RTI	
+	ORG   $FFD6
+	DC.W  SCI0_ISR
+	ORG   $FFFE
+	DC.W  Entry           

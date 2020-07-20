@@ -1,0 +1,28 @@
+﻿#include <mc9s12dp512.h>     
+#define SW PORTA_BIT7
+#define ENABLE PORTB_BIT0
+#define MTR_1 PORTB_BIT1
+#define MTR_2 PORTB_BIT2
+void main()
+  {
+  DDRA = DDRA & ~0x80;   
+  DDRB = DDRB | 0x07;   
+  SW = 1;
+  ENABLE = 0;
+  MTR_1 = 0;
+  MTR_2 = 0;
+  while(1)
+    {
+      ENABLE = 1;
+      if(SW == 1)
+        {
+          MTR_1 = 1;
+          MTR_2 = 0;
+        }
+      else
+        {
+          MTR_1 = 0;
+          MTR_2 = 1;
+        }
+    }
+  }
