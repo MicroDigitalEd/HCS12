@@ -1,0 +1,6 @@
+﻿MYLOC	EQU $830
+	LDAA	MYLOC			
+	BNE	NEXT			
+	LDAA	#$55
+	STAA	MYLOC			
+NEXT	...	

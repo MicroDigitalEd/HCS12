@@ -1,0 +1,4 @@
+﻿	LDAA	#$9A 
+	LSRA
+	LSRA
+	LSRA

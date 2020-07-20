@@ -1,0 +1,6 @@
+﻿	LDAA	#$62 	
+	SUBA  $807 
+	STAA	$807	
+	LDAA  #$27	
+	SBCA  $806	
+			

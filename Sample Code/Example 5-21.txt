@@ -1,0 +1,8 @@
+﻿	VAL_1	EQU	54
+	VAL_2	EQU	27
+	GREG	EQU	$820
+	LDAA	 #VAL_1	
+	CMPA	 #VAL_2	
+	BCS 	 OVER		
+	STAA	 GREG	
+OVER	....

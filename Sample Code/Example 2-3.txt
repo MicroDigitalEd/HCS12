@@ -1,0 +1,10 @@
+﻿	LDAA #$99   	
+	STAA $812 
+	LDAA #$85   	
+	STAA $813
+	LDAA #$3F   	
+	STAA $814
+	LDAA #$63   	
+ 	STAA $815
+	LDAA #$12   	
+	STAA $816 

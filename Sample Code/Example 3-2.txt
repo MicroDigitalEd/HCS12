@@ -1,0 +1,9 @@
+﻿COUNT  EQU $1225		  
+MYRAM	 EQU $1250		  
+	  LDAA  #15 	  
+	  STAA  COUNT	  
+	  CLRA 		  
+AGAIN	  ADDA  #3		  
+	  DEC   COUNT	  
+	  BNE   AGAIN	  
+	  STAA  MYRAM	  

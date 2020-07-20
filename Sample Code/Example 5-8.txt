@@ -1,0 +1,16 @@
+﻿RMND_L	EQU	$824
+RMND_M	EQU	$823
+RMND_H	EQU	$822
+MYNUM		EQU	$FD		
+MYDEN		EQU	10		
+		ORG 	$8000		
+		LDD 	#MYNUM	
+		LDX 	#MYDEN	
+		IDIV			
+		STAB RMND_L		
+		XGDX 			
+		LDX  #MYDEN		
+		IDIV			
+		STAB RMND_M		
+		XGDX 			
+		STAB RMND_H		

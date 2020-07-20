@@ -1,0 +1,16 @@
+﻿R1	 EQU	$820	
+COUNT	 EQU	$821	
+VALREG EQU	$822	
+	CLC			
+	CLRA	 		
+	STAA	R1		
+	LDAA	#8 		
+	STAA	COUNT
+	LDAA	#$97		
+	STAA	VALREG
+AGAIN	ROLA	   		
+	BCC	NEXT    	
+	INC	R1     	
+NEXT	DEC	COUNT
+	BNE AGAIN 		
+				

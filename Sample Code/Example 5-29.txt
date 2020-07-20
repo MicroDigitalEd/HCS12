@@ -1,0 +1,13 @@
+﻿MYREG	EQU	$820		
+	LDAA #$72		
+	STAA	MYREG		
+				
+	LSRA			
+	LSRA			
+	LSRA			
+	LSRA			
+	LSL 	MYREG		
+	LSL 	MYREG		
+	LSL 	MYREG		
+	LSL 	MYREG		
+	ORAA	MYREG		

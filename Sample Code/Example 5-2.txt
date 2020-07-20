@@ -1,0 +1,18 @@
+﻿L_Byte EQU	$807		
+H_Byte EQU	$806		
+	
+	CLRA			
+	STAA	H_Byte	
+	ADDA	$840		
+	BCC	N_1		
+	INC	H_Byte	
+N_1	ADDA	$841		
+	BCC	N_2		
+	INC	H_Byte	
+N_2	ADDA	$842		
+	BCC	N_3		
+	INC	H_Byte	
+N_3	ADDA	$843		
+	BCC	N_4		
+	INC	H_Byte	
+N_4	STAA	L_Byte	

@@ -1,0 +1,15 @@
+﻿L_Byte EQU $807		
+H_Byte EQU $806		
+	
+	CLRA			
+	STAA	H_Byte	
+	ADDA	#$79		
+	BCC	N_1		
+	INC	H_Byte	
+N_1	ADDA	#$F5		
+	BCC	N_2		
+	INC	H_Byte	
+N_2	ADDA	#$E2		
+	BCC	OVER		
+	INC	H_Byte	
+OVER	STAA	L_Byte	

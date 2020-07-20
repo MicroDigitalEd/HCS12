@@ -1,0 +1,8 @@
+﻿	MYREG EQU $820
+	LDAA	#$6E  	
+	STAA	MYREG		
+	LDAA	#$4C		
+	SUBA	MYREG 	
+    	BCC	NEXT    	
+    	NEGA  		
+NEXT	STAA	MYREG  	

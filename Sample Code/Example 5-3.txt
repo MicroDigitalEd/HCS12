@@ -1,0 +1,6 @@
+﻿	LDAA #$E7 	
+	ADDA $807	
+	STAA $809
+	LDAA #$3C	
+	ADCA $806	
+	STAA $808	

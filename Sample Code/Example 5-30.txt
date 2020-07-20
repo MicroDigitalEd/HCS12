@@ -1,0 +1,15 @@
+﻿BCD_VAL EQU	$29
+H_ASC	  EQU	$806	
+L_ASC	  EQU	$807	
+	LDAA #BCD_VAL	
+	ANDA #$0F		
+	ORAA #$30		
+	STAA L_ASC		
+	LDAA #BCD_VAL	
+	ANDA #$F0		
+	LSRA			
+	LSRA
+	LSRA
+	LSRA			
+	ORAA  #$30  	
+	STAA H_ASC   	

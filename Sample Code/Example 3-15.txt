@@ -1,0 +1,18 @@
+﻿MYREG	EQU	$1150
+					 
+DELAY	LDAA	#200			
+	STAA	MYREG			
+AGAIN	NOP		  		
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	NOP				
+	DEC	MYREG			
+	BNE 	AGAIN			

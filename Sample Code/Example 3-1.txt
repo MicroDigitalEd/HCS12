@@ -1,0 +1,7 @@
+﻿COUNT EQU 10	
+	LDAB #COUNT		
+	CLRA			
+AGAIN	ADDA #3		
+	DECB			
+	BNE AGAIN		
+	STAA $200		

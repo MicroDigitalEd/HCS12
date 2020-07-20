@@ -1,0 +1,16 @@
+﻿L_Byte	EQU	$807	
+H_Byte	EQU	$806	
+MYCOUNT 	EQU	$800	
+	LDAA	#4		
+	STAA	MYCOUNT
+	CLRA			
+	STAA	H_Byte	
+	LDX 	#$840		
+BACK	ADDA	0,X		
+	DAA
+	BCC	OVER		
+	INC	H_Byte	
+OVER	INX			
+	DEC	MYCOUNT	
+	BNE	BACK		
+	STAA	L_Byte	

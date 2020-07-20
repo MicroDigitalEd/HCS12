@@ -1,0 +1,5 @@
+﻿	LDAA	#6
+	LSLA
+	LSLA
+	LSLA
+	LSLA
