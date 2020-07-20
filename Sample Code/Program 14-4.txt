@@ -1,0 +1,27 @@
+﻿R1	DS.B 1
+R2	DS.B 1
+MYDATA DS.B 6	
+	ORG   ROMStart
+Entry:
+  LDS  #RAMEnd+1 
+  BSET DDRB,#$FF 
+  LDX  #MYDATA	
+  LDY  #DATA 	
+  MOVB #3,R1	
+OVER MOVW 0,Y,0,X 
+  INX		
+  INX
+  INY
+  INY
+  DEC  R1		
+  BNE  OVER	
+  LDX  #MYDATA
+  MOVB #6,R2		
+H1 LDAA 1,X+
+  STAA PORTB
+  JSR  SERIAL_COM	
+  DEC  R2
+  BNE  H1
+HERE BRA HERE
+	ORG $4500
+DATA FCB	"HELLO!"

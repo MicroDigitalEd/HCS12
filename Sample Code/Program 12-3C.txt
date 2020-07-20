@@ -1,0 +1,21 @@
+﻿const unsigned char MYCOM[] =
+	{0x33,0x32,0x28,0x0E,0x01,0x06,0x84,0};
+const unsigned char MYDATA[]={'H','E','L','L','O',0};
+int i;
+void main(void) {
+	DDRT = 0xFF; 
+	DDRB = 0xFF; 
+	i=0;
+	while(MYCOM[i]!=0)
+	  {
+	  COMWRT4(MYCOM[i++]);
+	  MSDelay(250);  
+	  }
+	i=0;
+	while(MYDATA[i]!=0)
+	  {
+	  DATWRT4(MYDATA[i++]);
+	  MSDelay(15);  
+	  }
+  while(1); 
+}

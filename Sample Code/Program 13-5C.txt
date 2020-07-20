@@ -1,0 +1,28 @@
+﻿#include <hidef.h>		
+#include <mc9s12dp512.h>	
+#pragma LINK_INFO DERIVATIVE "mc9s12dp512"
+void DELAY20uS(void);
+void TDELAY(void);
+unsigned char binbyte,x,d1,d2,d3;
+void main(void) {
+  ATD0CTL2 = 0x80;		
+  DELAY20uS();		
+  ATD0CTL3 = 0x08;		
+  ATD0CTL4 = 0xE3;		
+  for(;;) 
+  {
+    ATD0CTL5 = 0x82;		
+    
+    while(!(ATD0STAT0 & ATD0STAT0_SCF_MASK));
+    
+    binbyte = ATD0DR0L;		
+    x = binbyte / 10;		
+    d1 = binbyte % 10;		
+    d1 = d1 | 0x30;		
+    d2 = x % 10;			
+    d2 = d2 | 0x30;		
+    d3 = x / 10;			
+    d3 = d3 | 0x30;		
+   TDELAY();			
+  }
+}

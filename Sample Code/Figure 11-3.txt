@@ -1,0 +1,14 @@
+﻿Main		LDS	#$4000 	
+		LDAA	#$FF		 
+		STAA	DDRB		
+		LDAA	#$00	
+		STAA	DDRA		
+BACK		SWI			
+		BRA BACK	
+SWI_ISR	LDAA	PORTA
+		STAA	PORTB
+		RTI
+		ORG   $FFF6	
+		DC.W  SWI_ISR	
+		ORG   $FFFE	
+		DC.W  Main	

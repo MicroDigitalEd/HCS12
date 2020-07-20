@@ -1,0 +1,29 @@
+﻿#include <mc9s12dp512.h>     
+void DELAY20uS(void);
+void TDELAY(void);
+void main(void) 
+{
+  DDRB = 0xFF;		
+  ATD0CTL2 = 0x82;  	
+  DELAY20uS();		
+  ATD0CTL3 = 0x08;
+  ATD0CTL4 = 0xE3;
+  ATD0CTL5 = 0x82;	
+  __asm CLI;		
+  for(;;) {}		
+}
+interrupt (((0x10000-Vatd0)/2)-1) void AD_ISR(void) 
+  {  
+  PORTB = ATD0DR0L;	
+  TDELAY();		
+  ATD0CTL5 = 0x82;	
+  }
+void DELAY20uS(void) {
+  int x = 40;
+  while(x--);
+  }
+void TDELAY(void)  
+  {
+  int x = 0;
+  while(--x);
+  }

@@ -1,0 +1,36 @@
+﻿  LDS #RAMEnd+1     
+  BSET DDRB,#$FF
+  LDAA #'G'
+  LDAB #'O'
+  STD $400
+  JSR EE_WRT
+  LDAA #'O'
+  LDAB #'D'
+  STD $402
+  JSR EE_WRT
+  LDAA #' '
+  LDAB #'B'
+  STD $404
+  JSR EE_WRT
+  LDAA #'Y'
+  LDAB #'E'
+  STD $406
+  JSR EE_WRT
+  LDX #$400
+  MOVB #8,R1		  
+H1 LDAA 1,X+
+  STAA PORTB
+  JSR DELAY
+  DEC R1
+  BNE H1
+HERE	BRA	HERE
+EE_WRT
+  LDAA #$20
+  STAA ECMD		  	
+  LDAA #$80
+  STAA ESTAT	    		
+  LDAA #$FF			
+  BRSET ESTAT,mESTAT_PVIOL,OVER
+  BRSET ESTAT,mESTAT_ACCERR,OVER
+  CLRA			  	
+OVER	RTS	

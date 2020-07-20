@@ -1,0 +1,36 @@
+﻿#include <mc9s12dp512.h>
+unsigned char E_WRT(void);
+unsigned char data[8] @0x500; 
+unsigned char R1;
+unsigned char ret;
+void main(void) {
+  DDRB = 0xFF;
+  R1 = 0;
+  data[R1++] = 'G';
+  data[R1++] = 'O';
+  ret =E_WRT();
+  data[R1++] = 'O';
+  data[R1++] = 'D';
+  ret = E_WRT();
+  data[R1++] = ' ';
+  data[R1++] = 'B';
+  ret = E_WRT();
+  data[R1++] = 'Y';
+  data[R1++] = 'E';
+  ret = E_WRT();
+  for(R1=0;R1 < 8; R1++)
+    {
+      PORTB = data[R1];
+    }
+  for(;;) {} 
+}
+unsigned char E_WRT(void)
+  {
+	ECMD	= 0x20; 
+	ESTAT	= 0x80; 
+	ret = 0xFF; 
+	if(!ESTAT&&ESTAT_PVIOL_MASK)
+	  if(!ESTAT&&ESTAT_ACCERR_MASK)
+	    ret = 0x00; 
+  return ret;
+  }

@@ -1,0 +1,39 @@
+﻿R1	DS.B	1
+	ORG   ROMStart
+Entry:
+  LDS #RAMEnd+1	
+  BSET DDRB,#$FF
+  LDAA #'G'
+  LDAB #'O'
+  STD  $4400
+  JSR  F_WRT
+  LDAA #'O'
+  LDAB #'D'
+  STD  $4402
+  JSR  F_WRT
+  LDAA #' '
+  LDAB #'B'
+  STD  $4404
+  JSR  F_WRT
+  LDAA #'Y'
+  LDAB #'E'
+  STD  $4406
+  JSR  F_WRT
+  LDX  #$4400
+  MOVB #8,R1		
+H1 LDAA 1,X+
+  STAA PORTB
+  JSR  DELAY
+  DEC  R1
+  BNE  H1
+HERE	BRA	HERE
+F_WRT
+  LDAA #$20
+  STAA FCMD		
+  LDAA #$80
+  STAA FSTAT	
+  LDAA #$FF				
+  BRSET FSTAT,mFSTAT_PVIOL,OVER
+  BRSET FSTAT,mFSTAT_ACCERR,OVER
+  CLRA					
+OVER RTS	

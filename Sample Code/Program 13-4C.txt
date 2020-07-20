@@ -1,0 +1,26 @@
+﻿#include <hidef.h>      
+#include <mc9s12dp512.h>     
+#pragma LINK_INFO DERIVATIVE "mc9s12dp512"
+void DELAY20uS(void);
+void TDELAY(void);
+void main(void) 
+{
+  DDRB = 0xFF;
+  DDRA = 0xFF;
+  DDRH = 0xFF;
+  ATD0CTL2 = 0x80;
+  DELAY20uS();
+  ATD0CTL3 = 0x18;
+  ATD0CTL4 = 0xE3;
+  for(;;) 
+  {
+    ATD0CTL5 = 0x92;
+    
+    while(!(ATD0STAT0&ATD0STAT0_SCF_MASK));
+    PORTB = ATD0DR0L; 
+    PORTA = ATD0DR1L; 
+    PTH = ATD0DR2L; 
+    TDELAY(); 
+  } 
+  
+}

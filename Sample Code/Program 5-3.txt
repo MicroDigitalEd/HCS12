@@ -1,0 +1,15 @@
+﻿ 		ORG	$850
+SIGN_TEMP 	DC.B 	+13,-10,+19,+14,-18,+12,-19
+MYCOUNT	EQU	$800
+LOWEST	EQU	$810
+ 
+ 		LDAA  #7			
+		STAA	MYCOUNT
+ 		LDX 	#SIGN_TEMP		
+ 		LDAA	#$7F 			
+ 		BLE 	NEXT			
+ 		LDAA 	0,X			
+ NEXT: 	INX				
+ 		DEC 	MYCOUNT		
+		BNE	AGAIN			
+ 		STAA 	LOWEST		

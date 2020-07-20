@@ -1,0 +1,80 @@
+﻿TEMP		DS.B 1
+  		LDS   #RAMEnd+1
+  		LDAA  #$FF
+		STAA  DDRT		
+		STAA	 DDRB		
+		LDAA  #$33
+		JSR	 COMWRT4    	
+  		JSR   LDELAY
+  		LDAA  #$32
+		JSR	 COMWRT4		
+ 		JSR   DELAY
+		LDAA	 #$28	
+		JSR	 COMWRT4    	
+		JSR	 DELAY   		
+		LDAA	 #$0E     	
+		JSR	 COMWRT4		
+		JSR   DELAY
+		LDAA	 #$01     	
+		JSR	 COMWRT4    	
+		JSR   DELAY
+		LDAA	 #$06     	
+		JSR	 COMWRT4    	
+		JSR   DELAY
+		LDAA	 #$84     	
+		JSR	 COMWRT4    	
+		JSR   DELAY
+		LDAA	 #'N'     	
+		JSR	 DATWRT4    	
+		JSR   DELAY
+		LDAA  #'O'     	
+		JSR	 DATWRT4  	
+AGAIN:	BRA	 AGAIN      	
+COMWRT4:               		
+		STAA	 TEMP		
+		LDAA  #BITS
+		STAA  CNT
+		LDAA  TEMP
+		ANDA  #$F0
+		STAA  LCD_DATA
+		BCLR  LCD_CTRL,RS 	
+		BCLR  LCD_CTRL,RW 	
+		BSET  LCD_CTRL,EN 	
+		NOP				
+		BCLR  LCD_CTRL,EN 	
+		LDAA  #BITS
+		STAA  CNT
+		LDAA  TEMP
+		ANDA  #$0F
+CLO: 	LSLA
+  		DEC   CNT
+  		BNE   CLO
+  		STAA  LCD_DATA
+		BSET  LCD_CTRL,EN 	
+		NOP				
+		BCLR  LCD_CTRL,EN 	
+		RTS
+DATWRT4:                   	
+		STAA	  TEMP		
+		LDAA   #BITS
+		STAA   CNT
+		LDAA   TEMP
+		ANDA   #$F0
+		STAA   LCD_DATA
+		BSET   LCD_CTRL,RS 	
+		BCLR   LCD_CTRL,RW 	
+		BSET   LCD_CTRL,EN 	
+		NOP				
+		BCLR   LCD_CTRL,EN 	
+		LDAA   #BITS
+		STAA   CNT
+		LDAA   TEMP
+		ANDA   #$0F
+DLO: 	LSLA
+  		DEC    CNT
+  		BNE    DLO
+  		STAA   LCD_DATA
+		BSET   LCD_CTRL,EN 	
+		NOP				
+		BCLR   LCD_CTRL,EN 	
+		RTS

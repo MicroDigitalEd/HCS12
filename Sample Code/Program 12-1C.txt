@@ -1,0 +1,50 @@
+﻿#define LCD_DATA PTT 
+#define LCD_CTRL PORTB   
+#define RS PORTB_BIT5_MASK	 
+#define RW PORTB_BIT6_MASK	 
+#define EN PORTB_BIT7_MASK	 
+void COMNWRT(unsigned char);
+void DATAWRT(unsigned char);
+void MSDelay(int);
+void main(void) {
+	DDRT =0xFF; 
+	DDRB =0xFF; 
+	MSDelay(250); 
+	COMNWRT(0x38);
+	MSDelay(250); 
+	COMNWRT(0x0E);  
+	MSDelay(15);  
+	COMNWRT(0x01);  
+	MSDelay(15);  
+	COMNWRT(0x06);  
+	MSDelay(15);  
+	COMNWRT(0x84);  
+	MSDelay(15);  
+	DATAWRT('N'); 
+	MSDelay(15);  
+	DATAWRT('O'); 
+  while(1); 
+}
+void COMNWRT(unsigned char command) 
+  {  
+	LCD_DATA = command; 
+	LCD_CTRL = LCD_CTRL & ~RS;
+	LCD_CTRL = LCD_CTRL & ~RW;
+	LCD_CTRL = LCD_CTRL | EN; 
+	LCD_CTRL = LCD_CTRL & ~EN;
+  }
+  
+void DATAWRT(unsigned char data) 
+  {
+	LCD_DATA = data;  
+	LCD_CTRL = LCD_CTRL | RS; 
+	LCD_CTRL = LCD_CTRL & ~RW;
+	LCD_CTRL = LCD_CTRL | EN; 
+	LCD_CTRL = LCD_CTRL & ~EN;
+  }
+void MSDelay(int ms)
+  {
+  int i,j;
+  for(i=0;i < ms; i++)
+    for(j=0;j < 329; j++);
+  }

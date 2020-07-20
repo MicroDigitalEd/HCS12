@@ -1,0 +1,16 @@
+﻿        	ORG $840		  
+GRADE 	dc.b 	69,87,96,45,75 
+MYCOUNT	EQU	$800
+HIGHEST	EQU	$810
+ 
+ 		LDAA  #5		
+		STAA	MYCOUNT
+ 		LDX 	#GRADE	
+ 		CLRA 			
+ AGAIN: 	CMPA 	0,X		
+ 		BHI 	NEXT		
+ 		LDAA 	0,X		
+ NEXT: 	INX			
+ 		DEC 	MYCOUNT		
+		BNE	AGAIN		
+ 		STAA 	HIGHEST	

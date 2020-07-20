@@ -1,0 +1,10 @@
+﻿	ORG 	$8000	
+	LDAA #$25 	
+	ADDA	#$12		
+				
+	ADDA	#14		
+				
+	ADDA	#%00101000 
+				
+HERE JMP HERE		
+	END			

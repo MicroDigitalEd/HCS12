@@ -1,0 +1,36 @@
+﻿R1  DS.B  1
+R2  DS.B	1	
+MYDATA FCB	"HELLO!"
+	ORG   ROMStart
+Entry:
+  LDS  #RAMEnd+1		
+  BSET DDRB,#$FF		
+  LDX  #MYDATA			
+  LDY  #$4500 			
+  MOVB #3,R1			
+OVER	MOVW 0,X,0,Y 	
+  JSR  F_WRT	 
+  INX				
+  INX
+  INY
+  INY
+  DEC  R1				
+  BNE  OVER			
+  LDX  #$4500
+  MOVB #6,R2			
+H1 LDAA 1,X+
+  STAA PORTB
+  JSR  DELAY
+  DEC  R2
+  BNE  H1
+HERE BRA HERE
+F_WRT
+  LDAA #$20			
+  STAA FCMD
+  LDAA #$80
+  STAA FSTAT
+  LDAA #$FF			
+  BRSET FSTAT,mFSTAT_PVIOL,OVER2
+  BRSET FSTAT,mFSTAT_ACCERR,OVER2
+  CLRA				
+OVER2	RTS	

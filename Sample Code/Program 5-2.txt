@@ -1,0 +1,20 @@
+﻿		ORG 	$850
+DATA1 	DC.B 	'mY NAME is jOe'
+ 		ORG	$875
+DATA2 	DS.B 	14
+MYCOUNT	EQU	$800
+ 		LDAA  #14		
+		STAA	MYCOUNT
+ 		LDX 	#DATA1	
+ 		LDY 	#DATA2	
+BACK:		LDAA  0,X		
+ 		CMPA 	#$61		
+ 		BLO 	OVER		
+ 		CMPA 	#$7A 		
+ 		BHI 	OVER		
+ 		ANDA	#%11011111	
+OVER:		STAA 	0,Y		
+ 		INX			
+ 		INY			
+		DEC	MYCOUNT
+ 		BNE 	BACK		

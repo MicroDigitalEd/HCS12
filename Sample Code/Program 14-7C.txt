@@ -1,0 +1,43 @@
+﻿#include <mc9s12dp512.h>
+unsigned char F_WRT(void);
+unsigned char F_ERASE(void);
+unsigned char data[4] @0x4400;
+unsigned char R1;
+unsigned char ret;
+void main(void) {
+  DDRB = 0xFF;
+  R1 = 0;
+  data[R1++] = 'Y';		
+  data[R1++] = 'E';
+  ret =F_WRT();
+  data[R1++] = 'S';
+  data[R1++] = ' ';
+  ret = F_WRT();
+  for(R1=0;R1 < 4; R1++)	
+    { data[R1] = 0;
+      ret = F_ERASE();
+    }
+  
+  
+  for(R1=0;R1 < 4; R1++)
+    { PORTB = data[R1]; }
+  for(;;) {} 
+}
+unsigned char F_ERASE(void) {
+  FCMD	= 0x40; 
+  FSTAT	= 0x80; 
+  ret = 0xFF; 
+  if(!FSTAT&&FSTAT_PVIOL_MASK)
+    if(!FSTAT&&FSTAT_ACCERR_MASK)
+      ret = 0x00; 
+  return ret;
+  }
+unsigned char F_WRT(void) {  
+  FCMD	= 0x20; 
+  FSTAT	= 0x80; 
+  ret = 0xFF; 
+  if(!FSTAT&&FSTAT_PVIOL_MASK)
+    if(!FSTAT&&FSTAT_ACCERR_MASK)
+      ret = 0x00; 
+  return ret;
+  }

@@ -1,0 +1,9 @@
+﻿#include <mc9s12dp512.h>
+const char mynum[] = "0123456789"; 
+void main(void)
+  {   
+    unsigned char z;
+    DDRB = 0xFF;		
+    for(z=0;z<10;z++)
+      PORTB=mynum[z];
+  }

@@ -1,0 +1,8 @@
+﻿	LDAA	#$FF		
+	STAA	DDRA 		
+L2	LDAA	#$55		
+	STAA	PORTA		
+	LDAA  #$AA
+	STAA PORTA
+	BRA	L2
+	END

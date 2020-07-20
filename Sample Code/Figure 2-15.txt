@@ -1,0 +1,23 @@
+﻿	XDEF Entry		
+	ABSENTRY Entry		
+	INCLUDE 'mc9s12dp512.inc'                                    
+ROMStart    EQU  $4000  
+   ...
+   ...
+   
+	ORG RAMStart
+Counter     DS.W 1
+   ...
+   ...
+  
+	ORG   ROMStart
+Entry:
+	LDS   #RAMEnd+1 
+            
+   ...
+   
+   ...
+  
+HERE:       BRA HERE        
+            ORG   $FFFE
+            DC.W  Entry           

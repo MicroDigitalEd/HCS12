@@ -1,0 +1,11 @@
+﻿SUM	EQU	$210		
+		
+	ORG 	$8000		
+	LDAA #$25		
+	ADDA #$34		
+	ADDA #$11		
+	ADDA #18		
+	ADDA #%00011100	
+	STAA SUM		
+HERE	JMP HERE		
+	END			
