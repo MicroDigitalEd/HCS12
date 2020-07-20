@@ -1,0 +1,35 @@
+﻿#include <mc9s12dp512.h>
+void main(void)
+  {
+    unsigned char z;
+    DDRB = 0x00;				
+    DDRA = 0xFF;				
+    while(1)				
+      {
+        z = PORTB;   			
+        z = z & 0x3; 			
+        switch(z)  			
+          {
+           case(0):
+            {
+             PORTA = '0';		
+             break;
+            }
+           case(1):
+            {
+             PORTA = '1';		
+             break;
+            }
+           case(2):
+            {
+             PORTA = '2';		
+             break;
+            }
+           case(3):
+            {
+             PORTA = '3';		
+             break;
+            }
+          }
+      }
+  }

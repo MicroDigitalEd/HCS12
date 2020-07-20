@@ -1,0 +1,15 @@
+﻿#include <mc9s12dp512.h>
+void main (void)
+  {
+    DDRA = 0xFF;			
+    DDRB = 0xFF;			
+    DDRK = 0xFF;
+    PORTB = 0x35 & 0x0F;  	
+    PORTA = 0x04 | 0x68; 	
+    PORTK = 0x54 ^ 0x78;  	
+    PORTA = ~0x55;        	
+    PORTB = 0x9A >> 3;    	
+    PORTK = 0x77 >> 4;    	
+    PORTB = 0x6 << 4;    	
+    while(1);			
+  }

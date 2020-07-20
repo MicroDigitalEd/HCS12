@@ -1,0 +1,10 @@
+﻿	LDAA	 #$55		
+	LDX 	 #$840	
+	STAA	 0,X		
+	INX	 		
+	STAA	 0,X		
+	INX	 		
+	STAA	 0,X		
+	INX	 		
+	STAA	 0,X		
+	INX	 		

@@ -1,0 +1,13 @@
+﻿#include <mc9s12dp512.h>
+void main(void)
+  {
+    unsigned char x, y;
+    unsigned char mybyte = 0x29;
+    DDRA = 0xFF;	
+    DDRB = 0xFF;    			
+    x = mybyte & 0x0F;			
+    PORTB = x | 0x30;			
+    y = mybyte & 0xF0;			
+    y = y >> 4;  			
+    PORTA = y | 0x30;			
+  }

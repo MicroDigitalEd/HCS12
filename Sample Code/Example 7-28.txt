@@ -1,0 +1,12 @@
+﻿#include <mc9s12dp512.h>	
+#define inbit PORTB_BIT0
+#define outbit PORTA_BIT7
+void main(void)
+  {
+    DDRB_BIT0 = 0;		
+    DDRA_BIT7 = 1;		
+    while(1)
+      {
+      outbit = inbit;	
+      }
+  }

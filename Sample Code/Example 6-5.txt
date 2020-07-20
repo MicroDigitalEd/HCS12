@@ -1,0 +1,9 @@
+﻿COUNT	 EQU $810	
+	LDAA	 #$5		
+	STAA	 COUNT	
+	LDX	 #$830	
+	LDY	 #$860	
+B2	LDAA	 1,X+		
+	STAA	 1,Y+		
+	DEC	 COUNT	
+	BNE 	 B2		

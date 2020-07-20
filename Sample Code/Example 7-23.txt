@@ -1,0 +1,13 @@
+﻿#include <mc9s12dp512.h>
+#define MYBIT PORTB_BIT5 
+void main(void)
+  {
+    unsigned int z;
+    DDRB_BIT5 = 1;		
+    for(z=0;z<50000;z++)
+      {
+        MYBIT = 1;
+        MYBIT = 0;
+      }
+    while(1);			
+  }

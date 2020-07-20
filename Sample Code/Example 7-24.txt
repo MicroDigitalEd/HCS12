@@ -1,0 +1,10 @@
+﻿#include <mc9s12dp512.h>
+void main(void)
+  {  
+    DDRB = DDRB | 0x01;			
+    while(1)    
+      {
+        PORTB = PORTB | 0x01;	
+        PORTB = PORTB & ~0x01;	
+      }  
+  }

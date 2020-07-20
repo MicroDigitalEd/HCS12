@@ -1,0 +1,19 @@
+﻿#include <mc9s12dp512.h>
+void MSDelay(unsigned int);
+void main(void)
+  {
+    DDRB = 0xFF;			
+    while(1) 			
+      {
+        PORTB = 0x55;
+        MSDelay(250);
+        PORTB = 0xAA;
+        MSDelay(250);
+      }
+  }
+void MSDelay(unsigned int itime)
+  {
+    unsigned int i; unsigned int j;
+    for(i=0;i<itime;i++)
+      for(j=0;j<331;j++);
+  }

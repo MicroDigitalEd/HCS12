@@ -1,0 +1,18 @@
+﻿#include <mc9s12dp512.h>
+void MSDelay(unsigned int); 
+void main(void)
+  {
+    unsigned char mybyte;
+    DDRB = 0x00;			
+    DDRA = 0xFF;  
+    DDRK = 0xFF;			
+    while(1)
+      { 
+        mybyte = PORTB;	
+        if(mybyte < 100)
+          PORTA = mybyte;	
+        else
+          PORTK = mybyte;	
+        MSDelay(250);
+      }
+  }

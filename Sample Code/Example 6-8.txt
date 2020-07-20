@@ -1,0 +1,10 @@
+﻿	ORG $8500		
+DATA1	DC.B 28      	
+DATA2	DC.B %00110101	
+DATA3	DC.B $39		
+	ORG $8510		
+DATA4	DC.B 'Y' 		
+DATA5	DC.B '2','0','0','5'
+	ORG $8518		
+DATA6	DC.B "Hello ALI"	
+	END 

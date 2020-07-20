@@ -1,0 +1,10 @@
+﻿  #include <mc9s12dp512.h>
+  const char message[] = "HELLO"; 
+				
+  void main(void)
+    {
+      unsigned char z;
+      DDRB = 0xFF;				
+      for(z=0;z<5;z++)
+        PORTB= message[z];
+    }

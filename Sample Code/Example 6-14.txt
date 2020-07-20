@@ -1,0 +1,22 @@
+﻿	ORG	$8000			
+	BCLR	 DDRB,%00001111	
+	BSET	 DDRA,%11111111	
+	LDX	 #$8500		
+B2	LDAA	 PORTB		
+	ANDA	 #$0F			
+	LDAA	 A,X			
+	STAA	 PORTA		
+	BRA	 B2
+	ORG	$8500
+Y_TABLE 	FCB 	3,6,11,18,27,38,51,66,83,102
+ 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		END

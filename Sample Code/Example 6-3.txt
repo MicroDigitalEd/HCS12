@@ -1,0 +1,7 @@
+﻿COUNT	 EQU $810	
+	LDAA	 #16		
+	STAA	 COUNT	
+	LDX	 #$840	
+B1	CLR	 1,X+		
+	DEC	 COUNT	
+	BNE 	 B1		

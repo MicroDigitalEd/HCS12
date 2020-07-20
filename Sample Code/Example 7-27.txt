@@ -1,0 +1,17 @@
+﻿#include <mc9s12dp512.h>     
+#define LCDData PORTB			
+#define En PORTA_BIT2		
+const unsigned char message[] = "The Earth is but One Country";
+unsigned char z;
+void main(void)
+  {
+    DDRB = 0xFF;				
+    DDRA = 0b00000100;	
+    for(z=0;z<28;z++)		
+      {
+       LCDData = message[z];
+       En=1;				
+       En=0;			
+      }
+    while(1);			
+  }

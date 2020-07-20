@@ -1,0 +1,18 @@
+﻿#include <mc9s12dp512.h>
+#define PB0 PORTB_BIT0;
+void main(void)
+  { 
+    unsigned char x;
+    unsigned char temp;
+    unsigned char REGA=0;
+    DDRB_BIT0 = 0;		
+    DDRA = 0xFF;			
+    for(x=0;x<8;x++)
+      {
+       temp = PB0;		
+       temp = temp & 0x01;	
+       REGA = REGA | temp;	
+       REGA = REGA << 1;	
+      }
+    PORTA = REGA; 
+  }

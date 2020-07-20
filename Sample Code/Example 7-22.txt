@@ -1,0 +1,16 @@
+﻿#include <mc9s12dp512.h>
+void main(void)
+  { 
+    unsigned char x, binbyte, d1, d2, d3;
+    DDRA = 0xFF;
+    DDRB = 0xFF;
+    DDRK = 0xFF;			
+    binbyte = 0xFD;		
+    x = binbyte / 10;		
+    d1 = binbyte % 10;		
+    d2 = x % 10;			
+    d3 = x / 10;			
+    PORTA = d1;
+    PORTB = d2;
+    PORTK = d3;
+  }

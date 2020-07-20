@@ -1,0 +1,12 @@
+﻿	ORG	$8000		
+	LDX	 #MYDATA	
+	LDY	 #$840	
+B5	LDAA	 1,X+	 
+	BEQ	 EXIT		
+	STAA	 1,Y+		
+	BRA 	 B5		
+EXIT	BRA	 EXIT
+	
+	ORG	$8500		
+MYDATA DC.B "The Promise of World Peace",0
+	END

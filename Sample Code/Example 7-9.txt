@@ -1,0 +1,23 @@
+﻿#include <mc9s12dp512.h>
+#define LED PORTA			
+void MSDelay(unsigned int);
+void main(void)
+  {
+    DDRB = 0xFF;			
+    DDRA = 0xFF;			
+    PORTB = 00;			
+    LED = 0; 			
+    for(;;)				
+      {
+        PORTB++;			
+        LED++;			
+        MSDelay(500);
+      } 
+  }
+void MSDelay(unsigned int itime)
+  {
+    unsigned int i;
+    unsigned int j;
+    for(i=0;i<itime;i++)
+      for(j=0;j<331;j++);
+  }

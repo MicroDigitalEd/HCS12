@@ -1,0 +1,4 @@
+﻿	SYNR=2;
+	REFDV=1;
+	CLKSEL=0x80;	
+	PLLCTL=0x60;	

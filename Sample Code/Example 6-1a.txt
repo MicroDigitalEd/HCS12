@@ -1,0 +1,6 @@
+﻿	LDAA	 #$55		
+	STAA	 $840		
+	STAA	 $841		
+	STAA	 $842		
+	STAA	 $843		
+	STAA	 $844		

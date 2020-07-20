@@ -1,0 +1,12 @@
+﻿#include <mc9s12dp512.h>	
+void main(void)
+  { 
+    unsigned long z;
+    DDRB = 0xFF;			
+    for(z=0;z<=100000;z++)
+      {
+        PORTB = 0x55;
+        PORTB = 0xAA;
+      }  
+    while(1);			
+  }

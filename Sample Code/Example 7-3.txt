@@ -1,0 +1,10 @@
+﻿#include <mc9s12dp512.h>	
+void main(void)
+  {
+    DDRB = 0xFF;		
+    for(;;)      	
+      { 
+        PORTB = 0x55;	
+        PORTB = 0xAA;
+      }
+  }

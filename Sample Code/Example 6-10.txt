@@ -1,0 +1,17 @@
+﻿COUNT	 EQU $810	
+	ORG	$8000 	
+	BSET	 DDRB,%11111111	
+	LDAA	 #$4		
+	STAA	 COUNT	
+	LDX	 #MYDATA	
+B2	LDAA	 12,X 	
+	STAA	 PORTB	
+	INX	 		
+	DEC	 COUNT	
+	BNE 	 B2		
+	BRA 	 $		
+	ORG	$8500		
+MYDATA FCB "John        "
+	 FCB "Dewy        "
+	 FCB "111-999-9999"
+	 END

@@ -1,0 +1,19 @@
+﻿#include <mc9s12dp512.h>     
+void MSDelay(unsigned int);
+#define Dsensor PORTB_BIT1
+#define buzzer PORTA_BIT7
+void main(void)
+  {
+    DDRB_BIT1 = DDRB & ~0x02;		
+    DDRA_BIT7 = DDRA | 0x80;		
+    while(1)
+    {
+      while(Dsensor == 1)
+        { 
+          buzzer = 0;
+          MSDelay(2);
+          buzzer = 1;
+          MSDelay(2);
+        }
+    }
+  }

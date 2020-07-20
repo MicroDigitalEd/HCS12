@@ -1,0 +1,14 @@
+﻿H_BYTE EQU $806		
+L_BYTE EQU $807		
+COUNT	 EQU $810		
+	LDAA	 #4		
+	STAA	 COUNT	
+	LDX	 #$840	
+	CLRA	  		
+	STAA 	 H_BYTE 	
+B1	ADDA	 1,X+		
+	BCC	 OVER
+	INC	 H_BYTE
+OVER	DEC	 COUNT	
+	BNE 	 B1		
+	STAA	 L_BYTE          

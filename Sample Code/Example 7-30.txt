@@ -1,0 +1,15 @@
+﻿#include <mc9s12dp512.h>
+#define PB0 PORTB_BIT0
+void main(void)
+  { 
+    unsigned char conbyte = 0x88;
+    unsigned char regAMSB;
+    unsigned char x;
+    regAMSB = conbyte;
+    DDRB_BIT0 = 1;		
+    for(x=0;x<8;x++)
+      {
+        PB0 = (regAMSB >> 7) & 0x01;
+        regAMSB = regAMSB << 1;
+      }
+  }

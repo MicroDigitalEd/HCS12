@@ -1,0 +1,12 @@
+﻿	ORG	$8000			
+	BCLR	 DDRB,%00000111	
+	BSET	 DDRA,%11111111	
+	LDX	 #ASCI_TABLE	
+B6	LDAA	 PORTB		
+	ANDA	 #$07			
+	LDAA	 A,X			
+	STAA	 PORTA		
+	BRA	 B6			
+	ORG $8500
+ASCI_TABLE	DC.B	'0','1','2','3','4','5','6','7'
+	END
