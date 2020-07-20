@@ -1,0 +1,21 @@
+﻿#include <hidef.h>      
+#include <mc9s12dp512.h>     
+#pragma LINK_INFO DERIVATIVE "mc9s12dp512"
+unsigned int Tcount;
+void main(void)
+  {
+   DDRT = DDRT | 0x10;	
+   TSCR1 = 0x80; 
+   TSCR2 = 0x00; 
+   TIOS = 0x10;  
+   TCTL1 = 0x01;  
+   
+while(1)
+    { 
+      Tcount = TCNT;
+      Tcount = Tcount + 10000;
+	 TC4 = Tcount;
+      while (!(TFLG1 & TFLG1_C4F_MASK));
+	 TFLG1 = TFLG1 | TFLG1_C4F_MASK;  
+    }
+  }

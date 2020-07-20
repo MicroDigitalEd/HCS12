@@ -1,0 +1,13 @@
+﻿#include <mc9s12dp512.h>
+void main(void)
+  {
+   DDRB = 0xFF;	
+   DDRT = DDRT & 0xF7;	
+   ICPAR = 0x08; 
+   TCTL4 = 0x40;  
+   PACN3 = 0x00; 
+ while(1)
+    { 
+     PORTB = PACN3;  
+    }
+  }

@@ -1,0 +1,11 @@
+﻿	LDAA	#$0		
+     	STAA  SCI0BDH    	
+	LDAA	#$0D		
+     	STAA  SCI0BDL    	
+     	LDAA  #0	   	
+     	STAA	SCI0CR1	
+     	LDAA  #$0C	   	
+     	STAA	SCI0CR2	
+OVER	LDAA  #'G'		
+HERE	BRCLR	SCI0SR1, mSCI0SR1_TDRE, HERE	
+	BRA OVER		

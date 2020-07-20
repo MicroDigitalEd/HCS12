@@ -1,0 +1,14 @@
+﻿	LDAA	#$0		
+     	STAA  SCI0BDH	
+	LDAA	#$0D		
+     	STAA  SCI0BDL	
+     	LDAA  #$0		
+     	STAA	SCI0CR1	
+     	LDAA  #$0C		
+     	STAA	SCI0CR2	
+     	LDAA  #$FF		
+     	STAA  DDRB
+HERE	BRCLR	SCI0SR1, mSCI0SR1_RDRF ,HERE 
+	LDAA	SCI0DRL
+	STAA  PORTB     	
+	BRA	HERE		

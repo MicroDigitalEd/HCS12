@@ -1,0 +1,22 @@
+﻿#include <mc9s12dp512.h>
+#ifndef TFLG1_C0F_MASK
+  #define TFLG1_C0F_MASK 0x01
+#endif
+unsigned int Tcount;
+void main(void)
+  {
+   DDRB = 0xFF;	
+   TSCR1 = 0x90; 
+   TSCR2 = 0x07; 
+   TIOS = 0x01;  
+   TCTL2 = 0x00;  
+   PORTB = 0x55;
+   while(1)
+    { 
+      Tcount = TCNT;
+      Tcount = Tcount + 15625;
+      TC0 = Tcount;
+      while (!(TFLG1 & TFLG1_C0F_MASK));
+      PORTB = ~PORTB; 
+    }
+  }

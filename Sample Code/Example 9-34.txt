@@ -1,0 +1,26 @@
+﻿#include <mc9s12dp512.h>
+#ifndef TFLG1_C4F_MASK
+  #define TFLG1_C4F_MASK 0x10
+#endif
+unsigned int Tcount;
+void main(void)
+  {
+   TSCR1 = 0x80; 
+   TSCR2 = 0x00; 
+   TIOS = 0x10;  
+   while(1)
+    { 
+      TCTL1 = 0x02;  
+      Tcount = TCNT;
+      Tcount = Tcount + 12000;
+      TC4 = Tcount;
+      while (!(TFLG1 & TFLG1_C4F_MASK));
+      TFLG1 = TFLG1 | TFLG1_C4F_MASK;  
+      TCTL1 = 0x03;  
+      Tcount = TCNT;
+      Tcount = Tcount + 8000;
+      TC4 = Tcount;
+      while (!(TFLG1 & TFLG1_C4F_MASK));
+      TFLG1 = TFLG1 | TFLG1_C4F_MASK;  
+    }
+  }

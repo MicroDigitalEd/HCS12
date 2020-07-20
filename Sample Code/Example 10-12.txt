@@ -1,0 +1,20 @@
+﻿#include <mc9s12dp512.h>   
+void SerTx(unsigned char);
+void main(void)
+  {
+    SCI1BDH=0x0;			
+    SCI1BDL=0x0D;			
+    SCI1CR1=0x0;			
+    SCI1CR2=0X0C;  
+    while(1)
+      {
+        SerTx('Y');
+        SerTx('E');
+        SerTx('S');
+      }
+  }
+void SerTx(unsigned char c)
+  {  	
+    while(!(SCI1SR1 & SCI1SR1_TDRE_MASK));
+    SCI1DRL=c;				
+  }

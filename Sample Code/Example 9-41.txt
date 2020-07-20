@@ -1,0 +1,16 @@
+﻿#include <mc9s12dp512.h>
+unsigned int Mycount;
+void main(void)
+  {
+   DDRA = 0xFF;	
+   DDRB = 0xFF;	
+   DDRT = DDRT & 0x7F;	
+   PACTL = 0x50; 
+			
+   PACN32 = 0;	
+ while(1)
+    { 
+    Mycount = PACN32;	
+    PORTAB = Mycount;
+     }
+  }

@@ -1,0 +1,16 @@
+﻿#include <mc9s12dp512.h>
+unsigned int Mycount;
+void main(void)
+  {
+   DDRB = DDRB | 0x02;	
+   DDRT = DDRT & ~0x80;	
+   PACTL = 0x50; 		
+				
+   PACN32 = 0xFC18;	
+ while (!(PAFLG & PAFLG_PAOVF_MASK));
+ while(1)			
+    { 
+      PORTB = PORTB | 0x02;	
+      PORTB = PORTB & 0xFD;	
+    }
+  }

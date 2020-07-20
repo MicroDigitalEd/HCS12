@@ -1,0 +1,25 @@
+﻿#include <mc9s12dp512.h>
+#ifndef TFLG1_C6F_MASK
+  #define TFLG1_C6F_MASK 0x40
+#endif
+unsigned int Tcount, T1, T2;
+void main(void)
+  {
+   DDRT = DDRT & 0xBF;	
+   TSCR1 = 0x80; 
+   TSCR2 = 0x01; 
+   TIOS = 0x40;  
+ while(1)
+    {
+     TCTL3 = 0x10;  
+     TFLG1 = TFLG1 | TFLG1_C6F_MASK;  
+     while (!(TFLG1 & TFLG1_C6F_MASK));
+     T1 = TC6; 
+     TCTL3 = 0x20;  
+     TFLG1 = TFLG1 | TFLG1_C6F_MASK;  
+     while (!(TFLG1 & TFLG1_C6F_MASK));
+     T2 = TC6; 
+     Tcount = T2 - T1; 
+     PORTAB = Tcount;  
+    }
+  }

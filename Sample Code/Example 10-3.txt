@@ -1,0 +1,19 @@
+﻿   	LDS   #$4000
+    	LDAA	#$0		
+     	STAA  SCI0BDH    	
+	LDAA	#$0D		
+     	STAA  SCI0BDL    	
+     	LDAA  #0	   	
+     	STAA	SCI0CR1	
+     	LDAA  #$0C	   	
+     	STAA	SCI0CR2	
+OVER	LDAA  #'Y'		
+	JSR	TRANS
+	LDAA  #'E'		
+	JSR	TRANS
+	LDAA  #'S'		
+	JSR	TRANS
+	BRA	OVER		
+TRANS BRCLR	SCI0SR1, mSCI0SR1_TDRE, HERE	
+  	STAA	SCI0DRL	
+	RTS			

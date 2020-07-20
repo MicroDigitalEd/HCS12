@@ -1,0 +1,16 @@
+﻿#include <mc9s12dp512.h>
+unsigned int MyCount;
+void main(void)
+  {
+   DDRA = 0xFF;	
+   PACTL = 0x50; 
+   while(1)		
+    { 
+     PACN32 = 0xFFF4;	
+     PORTB = PORTB & ~0x10;	
+     while (!(PAFLG & PAFLG_PAOVF_MASK));
+     PAFLG = PAFLG | PAFLG_PAOVF_MASK;
+     PORTA = ++MyCount; 
+     PORTB = PORTB | 0x10;	
+    }
+  }
